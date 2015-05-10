@@ -2,12 +2,14 @@ language: objective-c
 
 before_install:
   - export ROOT=$(pwd)
+  - mkdir -p $ROOT/bin
+  - export PATH=$ROOT/bin:$PATH
   - export GHC_VER=7.8.4
   - export GHC_DIR=ghc-$GHC_VER
   - export GHC_TAR=ghc-$GHC_VER-x86_64-apple-darwin.tar.xz
-  - export CABAL_VER=1.22.4.0
-  - export CABAL_DIR=cabal-install-$CABAL_VER
-  - export CABAL_TAR=cabal-install-$CABAL_VER.tar.gz
+  - export CABAL_VER=1.22.0.0
+  - export CABAL_DIR=cabal-$CABAL_VER
+  - export CABAL_TAR=cabal-$CABAL_VER-x86_64-apple-darwin-mavericks.tar.gz
   - export ELM_MAC=$ROOT/installers/mac
   - export ELM_PLATFORM=$ROOT/installers/mac/Elm-Platform/0.15
   - export X509_CERT=$ROOT/hs-certificate
@@ -19,7 +21,7 @@ install:
   - (cd $GHC_DIR && ./configure && make install)
   - wget https://www.haskell.org/cabal/release/$CABAL_DIR/$CABAL_TAR
   - tar xf $CABAL_TAR
-  - (cd $CABAL_DIR && ./bootstrap.sh)
+  - mv cabal $ROOT/bin
   - cabal update
   - git clone -b osx https://github.com/bmjames/hs-certificate $X509_CERT
 
