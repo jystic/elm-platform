@@ -1,11 +1,10 @@
 language: objective-c
 
-before_install:
-  - brew update
-
 install:
+  - brew update
   - brew install ghc
   - brew install cabal-install
+  - cabal update
   - git clone -b osx https://github.com/bmjames/hs-certificate
   - (cd hs-certificate/x509-system && cabal install)
 
