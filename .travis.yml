@@ -2,17 +2,22 @@ language: objective-c
 
 before_install:
   - export ROOT=$(pwd)
+  - export GHC_VER=7.8.4
+  - export GHC_DIR=ghc-$GHC_VER
+  - export GHC_TAR=ghc-$GHC_VER-x86_64-apple-darwin.tar.xz
   - export ELM_MAC=$ROOT/installers/mac
   - export ELM_PLATFORM=$ROOT/installers/mac/Elm-Platform/0.15
   - export X509_CERT=$ROOT/hs-certificate
   - export X509_SYSTEM=$X509_CERT/x509-system
 
 install:
+  - wget https://downloads.haskell.org/~ghc/$GHC_VER/$GHC_TAR
+  - tar xf $GHC_TAR
+  - (cd $GHC_DIR && ./configure && make install)
   - brew update
-  - brew install ghc
   - brew install cabal-install
   - cabal update
-  - git clone -b osx https://github.com/bmjames/hs-certificate
+  - git clone -b osx https://github.com/bmjames/hs-certificate $X509_CERT
 
 script:
   - mkdir -p $ELM_PLATFORM
