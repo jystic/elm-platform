@@ -1,12 +1,21 @@
 language: objective-c
 
+before_install:
+  - export ROOT=$(pwd)
+  - export ELM_MAC=$ROOT/installers/mac
+  - export ELM_PLATFORM=$ROOT/installers/mac/Elm-Platform/0.15
+  - export X509_CERT=$ROOT/hs-certificate
+  - export X509_SYSTEM=$X509_CERT/x509-system
+
 install:
   - brew update
   - brew install ghc
   - brew install cabal-install
   - cabal update
   - git clone -b osx https://github.com/bmjames/hs-certificate
-  - (cd hs-certificate/x509-system && cabal install)
 
 script:
-  - (cd installers/mac && ./make-installer.sh 0.15)
+  - mkdir -p $ELM_PLATFORM
+  - (cd $ELM_PLATFORM && cabal sandbox init --sandbox=.)
+  - (cd $ELM_PLATFORM && cabal sandbox add-source $X509_SYSTEM)
+  - (cd $ELM_MAC && ./make-installer.sh 0.15)
