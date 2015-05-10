@@ -18,4 +18,5 @@ script:
   - mkdir -p $ELM_PLATFORM
   - (cd $ELM_PLATFORM && cabal sandbox init --sandbox=.)
   - (cd $ELM_PLATFORM && cabal sandbox add-source $X509_SYSTEM)
+  - (cd $ELM_PLATFORM && wget https://www.stackage.org/nightly/cabal.config)
   - (cd $ELM_MAC && ./make-installer.sh 0.15)
