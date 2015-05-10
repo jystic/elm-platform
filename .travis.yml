@@ -18,6 +18,7 @@ install:
   - tar xf $GHC_TAR
   - (cd $GHC_DIR && ./configure && make install)
   - wget https://www.haskell.org/cabal/release/$CABAL_DIR/$CABAL_TAR
+  - tar xf $CABAL_TAR
   - (cd $CABAL_DIR && ./bootstrap.sh)
   - cabal update
   - git clone -b osx https://github.com/bmjames/hs-certificate $X509_CERT
