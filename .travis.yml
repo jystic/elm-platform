@@ -5,6 +5,9 @@ before_install:
   - export GHC_VER=7.8.4
   - export GHC_DIR=ghc-$GHC_VER
   - export GHC_TAR=ghc-$GHC_VER-x86_64-apple-darwin.tar.xz
+  - export CABAL_VER=1.22.4.0
+  - export CABAL_DIR=cabal-install-$CABAL_VER
+  - export CABAL_TAR=cabal-install-$CABAL_VER.tar.gz
   - export ELM_MAC=$ROOT/installers/mac
   - export ELM_PLATFORM=$ROOT/installers/mac/Elm-Platform/0.15
   - export X509_CERT=$ROOT/hs-certificate
@@ -14,8 +17,8 @@ install:
   - wget https://downloads.haskell.org/~ghc/$GHC_VER/$GHC_TAR
   - tar xf $GHC_TAR
   - (cd $GHC_DIR && ./configure && make install)
-  - brew update
-  - brew install cabal-install
+  - wget https://www.haskell.org/cabal/release/$CABAL_DIR/$CABAL_TAR
+  - (cd $CABAL_DIR && ./bootstrap.sh)
   - cabal update
   - git clone -b osx https://github.com/bmjames/hs-certificate $X509_CERT
 
