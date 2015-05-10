@@ -9,4 +9,4 @@ install:
   - (cd hs-certificate/x509-system && cabal install)
 
 script:
-  - (cd installers/mac && ./make-installer.sh)
+  - (cd installers/mac && ./make-installer.sh 0.15)
