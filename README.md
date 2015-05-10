@@ -1,4 +1,4 @@
-# Elm Platform
+# Elm Platform [![Build Status](http://img.shields.io/travis/jystic/elm-platform.svg?style=flat)](https://travis-ci.org/jystic/elm-platform)
 
 A bundle of all [Elm](http://elm-lang.org) tools: [`elm-compiler`][elm-compiler],
 [`elm-reactor`][elm-reactor], [`elm-repl`][elm-repl], and [`elm-package`][elm-package].
