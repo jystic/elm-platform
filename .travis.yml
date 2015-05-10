@@ -1,0 +1,12 @@
+language: objective-c
+
+before_install:
+  - brew update
+
+install:
+  - brew install ghc
+  - git clone -b osx https://github.com/bmjames/hs-certificate
+  - (cd hs-certificate/x509-system && cabal install)
+
+script:
+  - installers/mac/make-installer.sh
